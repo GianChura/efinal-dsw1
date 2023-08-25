@@ -41146,7 +41146,8 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
       instrumentos: [],
       musicos: [],
       bandas: [],
-      animes: []
+      animes: [],
+      plataformas: []
     };
     return _this;
   }
@@ -41186,11 +41187,19 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
           animes: response.entity._embedded.animes
         });
       });
+      client({
+        method: 'GET',
+        path: '/api/plataformas'
+      }).done(function (response) {
+        _this2.setState({
+          plataforma: response.entity._embedded.plataformas
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Semana 13 App"), /*#__PURE__*/React.createElement("div", {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "EXAMEN FINALp"), /*#__PURE__*/React.createElement("div", {
         style: {
           "width": "100%",
           "display": "flex"
@@ -41239,7 +41248,18 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
         animes: this.state.animes
       }), /*#__PURE__*/React.createElement(Link, {
         to: "/nuevo-anime"
-      }, "Nuevo Anime"))));
+      }, "Nuevo Anime")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          "width": "calc(100% / 3)"
+        }
+      }, /*#__PURE__*/React.createElement(Titulo, {
+        entidad: "Plaformas",
+        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
+      }), /*#__PURE__*/React.createElement(PlataformaList, {
+        plataformas: this.state.plataformas
+      }), /*#__PURE__*/React.createElement(Link, {
+        to: "/nuevo-plataforma"
+      }, "Nueva Plaforma"))));
     }
   }]);
   return HomePage;
@@ -41339,12 +41359,35 @@ var AnimeList = /*#__PURE__*/function (_React$Component5) {
   }]);
   return AnimeList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component6) {
-  _inherits(Instrumento, _React$Component6);
-  var _super6 = _createSuper(Instrumento);
+var PlataformaList = /*#__PURE__*/function (_React$Component6) {
+  _inherits(PlataformaList, _React$Component6);
+  var _super6 = _createSuper(PlataformaList);
+  function PlataformaList() {
+    _classCallCheck(this, PlataformaList);
+    return _super6.apply(this, arguments);
+  }
+  _createClass(PlataformaList, [{
+    key: "render",
+    value: function render() {
+      var plataformas = this.props.plataformas.map(function (plataforma) {
+        return /*#__PURE__*/React.createElement(Plaforma, {
+          key: plataforma._links.self.href,
+          plataforma: plataforma
+        });
+      });
+      return /*#__PURE__*/React.createElement("table", {
+        border: "1"
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), plataformas));
+    }
+  }]);
+  return PlataformaList;
+}(React.Component);
+var Instrumento = /*#__PURE__*/function (_React$Component7) {
+  _inherits(Instrumento, _React$Component7);
+  var _super7 = _createSuper(Instrumento);
   function Instrumento() {
     _classCallCheck(this, Instrumento);
-    return _super6.apply(this, arguments);
+    return _super7.apply(this, arguments);
   }
   _createClass(Instrumento, [{
     key: "render",
@@ -41359,12 +41402,12 @@ var Instrumento = /*#__PURE__*/function (_React$Component6) {
   }]);
   return Instrumento;
 }(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Musico, _React$Component7);
-  var _super7 = _createSuper(Musico);
+var Musico = /*#__PURE__*/function (_React$Component8) {
+  _inherits(Musico, _React$Component8);
+  var _super8 = _createSuper(Musico);
   function Musico() {
     _classCallCheck(this, Musico);
-    return _super7.apply(this, arguments);
+    return _super8.apply(this, arguments);
   }
   _createClass(Musico, [{
     key: "render",
@@ -41377,12 +41420,12 @@ var Musico = /*#__PURE__*/function (_React$Component7) {
   }]);
   return Musico;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component8) {
-  _inherits(Banda, _React$Component8);
-  var _super8 = _createSuper(Banda);
+var Banda = /*#__PURE__*/function (_React$Component9) {
+  _inherits(Banda, _React$Component9);
+  var _super9 = _createSuper(Banda);
   function Banda() {
     _classCallCheck(this, Banda);
-    return _super8.apply(this, arguments);
+    return _super9.apply(this, arguments);
   }
   _createClass(Banda, [{
     key: "render",
@@ -41395,12 +41438,12 @@ var Banda = /*#__PURE__*/function (_React$Component8) {
   }]);
   return Banda;
 }(React.Component);
-var Anime = /*#__PURE__*/function (_React$Component9) {
-  _inherits(Anime, _React$Component9);
-  var _super9 = _createSuper(Anime);
+var Anime = /*#__PURE__*/function (_React$Component10) {
+  _inherits(Anime, _React$Component10);
+  var _super10 = _createSuper(Anime);
   function Anime() {
     _classCallCheck(this, Anime);
-    return _super9.apply(this, arguments);
+    return _super10.apply(this, arguments);
   }
   _createClass(Anime, [{
     key: "render",
@@ -41408,12 +41451,32 @@ var Anime = /*#__PURE__*/function (_React$Component9) {
       var id = this.props.anime._links.self.href.split("/").slice(-1);
       return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.anime.nombre), /*#__PURE__*/React.createElement("td", null, this.props.anime.genero), /*#__PURE__*/React.createElement("td", null, this.props.anime.capitulos), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
         to: "/ver-anime/" + id
-      }, "Ver"), /*#__PURE__*/React.createElement(Link, {
+      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
         to: "/editar-anime/" + id
       }, "Editar")));
     }
   }]);
   return Anime;
+}(React.Component);
+var Plaforma = /*#__PURE__*/function (_React$Component11) {
+  _inherits(Plaforma, _React$Component11);
+  var _super11 = _createSuper(Plaforma);
+  function Plaforma() {
+    _classCallCheck(this, Plaforma);
+    return _super11.apply(this, arguments);
+  }
+  _createClass(Plaforma, [{
+    key: "render",
+    value: function render() {
+      var id = this.props.plataforma._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.plataforma.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-plataforma/" + id
+      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
+        to: "/editar-plataforma/" + id
+      }, "Editar")));
+    }
+  }]);
+  return Plaforma;
 }(React.Component);
 module.exports = HomePage;
 

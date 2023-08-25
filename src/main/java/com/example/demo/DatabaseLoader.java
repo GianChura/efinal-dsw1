@@ -12,6 +12,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	private final BandaRepository repositoryB;
 	private final IntegranteRepository repositoryN;
 	private final AnimeRepository repositoryA;
+	private final PlataformaRepository repositoryP;
 
 	@Autowired
 	public DatabaseLoader(
@@ -19,13 +20,15 @@ public class DatabaseLoader implements CommandLineRunner {
 		MusicoRepository repositoryM,
 		BandaRepository repositoryB,
 		IntegranteRepository repositoryN,
-		AnimeRepository repositoryA
+		AnimeRepository repositoryA,
+		PlataformaRepository repositoryP
 		) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
 		this.repositoryB = repositoryB;
 		this.repositoryN = repositoryN;
 		this.repositoryA = repositoryA;
+		this.repositoryP = repositoryP;
 	}
 
 	@Override
@@ -55,6 +58,9 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryA.save(new Anime("Dragon Ball Z","Acción","291"));
 		this.repositoryA.save(new Anime("One Piece","Acción","1053"));
 
+		this.repositoryP.save(new Plataforma("Netflix"));
+		this.repositoryP.save(new Plataforma("Amazon Prime"));
+		this.repositoryP.save(new Plataforma("HBO"));
 		
 
 

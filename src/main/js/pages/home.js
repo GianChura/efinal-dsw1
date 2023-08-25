@@ -5,7 +5,7 @@ const {Link} = require('react-router-dom');
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] , animes:[]};
+		this.state = { instrumentos: [], musicos: [], bandas: [] , animes:[], plataformas:[]};
 	}
 	componentDidMount() {
 
@@ -25,11 +25,16 @@ class HomePage extends React.Component {
 			this.setState({ animes: response.entity._embedded.animes });
 		});
 
+		client({ method: 'GET', path: '/api/plataformas' }).done(response => {
+			this.setState({ plataforma: response.entity._embedded.plataformas });
+		});
+
+
 	}
 	render() {
 		return (
 			<>
-				<h1>Semana 13 App</h1>
+				<h1>EXAMEN FINALp</h1>
 
 				<div style={  {"width": "100%", "display": "flex"}   }>
 					<div style={{"width": "calc(100% / 3)"}}>
@@ -51,6 +56,12 @@ class HomePage extends React.Component {
 						<Titulo entidad="Animes" emoji="👩🏼‍🎤" />
 						<AnimeList animes={this.state.animes} />
 						<Link to="/nuevo-anime">Nuevo Anime</Link>
+					</div>
+
+					<div style={{"width": "calc(100% / 3)"}}>
+						<Titulo entidad="Plaformas" emoji="👩🏼‍🎤" />
+						<PlataformaList plataformas={this.state.plataformas} />
+						<Link to="/nuevo-plataforma">Nueva Plaforma</Link>
 					</div>
 				</div>
 
@@ -151,7 +162,24 @@ class AnimeList extends React.Component {
 }
 
 
-
+class PlataformaList extends React.Component {
+	render() {
+		const plataformas = this.props.plataformas.map(plataforma =>
+			<Plaforma key={plataforma._links.self.href} plataforma={plataforma} />
+		);
+		return (
+			<table border="1">
+				<tbody>
+					<tr>
+						<th>Nombre</th>		
+						<th>Acciones</th>				
+					</tr>
+					{plataformas}
+				</tbody>
+			</table>
+		)
+	}
+}
 
 
 
@@ -221,5 +249,23 @@ class Anime extends React.Component {
 	}
 }
 
+
+class Plaforma extends React.Component {
+	render() {
+		const id = this.props.plataforma._links.self.href.split("/").slice(-1)
+
+		return (
+			<tr>
+				<td>{this.props.plataforma.nombre}</td>
+			
+				<td>
+					<Link to={"/ver-plataforma/" + id}>Ver</Link>	|
+					<Link to={"/editar-plataforma/" + id}>Editar</Link>					
+				</td>
+				
+			</tr>
+		)
+	}
+}
 
 module.exports = HomePage;
