@@ -40909,7 +40909,7 @@ var router = createBrowserRouter([{
   path: '/editar-usuario/:id',
   element: /*#__PURE__*/React.createElement(EditarUsuarioPage, null)
 }, {
-  path: '/nuevo-dispositivo',
+  path: '/ver-usuario/:id/nuevo-dispositivo',
   element: /*#__PURE__*/React.createElement(NuevoDispositivoPage, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
@@ -42574,7 +42574,9 @@ var VerUsuarioPage = function VerUsuarioPage() {
       return setDispositivos(response.entity);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Dispositivo"), /*#__PURE__*/React.createElement("table", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("table", {
+    border: "1"
+  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Dispositivo"), /*#__PURE__*/React.createElement("table", {
     border: "1"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Plataforma"), /*#__PURE__*/React.createElement("th", null, "Anime"))), /*#__PURE__*/React.createElement("tbody", null, dispositivos.map(function (dispositivo) {
     return /*#__PURE__*/React.createElement("tr", {

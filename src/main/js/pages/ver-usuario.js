@@ -25,15 +25,17 @@ const VerUsuarioPage = () => {
     return (
         <>
             <h1>Ver Usuario</h1>
-
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <td>{usuario.nombre}</td>
-                </tr>
+            <hr/>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{usuario.nombre}</td>
+                    </tr>
+                </tbody>
             </table>
+            <hr/>
 
-            <hr />
             <h2>Dispositivo</h2>
             <table border="1">
                 <thead>
@@ -58,9 +60,6 @@ const VerUsuarioPage = () => {
             </table>
 
             <hr />
-
-
-
             <Link to={`/ver-usuario/${id}/nuevo-dispositivo`}>Nuevo Dispositivo</Link> |
             <Link to="/">Volver</Link>
         </>
