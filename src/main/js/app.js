@@ -19,6 +19,7 @@ const EditarPlataformaPage= require('./pages/editar-plataforma');
 const VerUsuarioPage= require('./pages/ver-usuario');
 const NuevoUsuarioPage= require('./pages/nuevo-usuario');
 const EditarUsuarioPage= require('./pages/editar-usuario');
+const NuevoDispositivoPage= require('./pages/nuevo-dispositivo');
 
 const router = createBrowserRouter([
 	{ path: '/', element: <HomePage /> },
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
 	{ path: '/ver-usuario/:id', element: <VerUsuarioPage /> },
 	{ path: '/nuevo-usuario', element: <NuevoUsuarioPage/> },
 	{ path: '/editar-usuario/:id', element: <EditarUsuarioPage /> },
+	{ path: '/nuevo-dispositivo', element: <NuevoDispositivoPage/> },
 
 
 ])

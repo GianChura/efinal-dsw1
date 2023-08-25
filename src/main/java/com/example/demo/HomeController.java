@@ -22,9 +22,9 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping(path = "/api/bandas/{id}/formacion")
-	public @ResponseBody List<Map <String, Object>> formacion(@PathVariable Integer id){
-		String sql = "SELECT integrante.id as ID, musico.nombre as MUSICO, instrumento.nombre as INSTRUMENTO FROM integrante JOIN musico ON integrante.id_musico=musico.id JOIN instrumento ON integrante.id_instrumento=instrumento.id WHERE integrante.id_banda = ?";
+	@GetMapping(path = "/api/usuarios/{id}/dispositivo")
+	public @ResponseBody List<Map <String, Object>> dispositivo(@PathVariable Integer id){
+		String sql = "SELECT dispositivo.id as ID, plataforma.nombre as PLATAFORMA, anime.nombre as ANIME FROM dispositivo JOIN plataforma ON dispositivo.id_plataforma=plataforma.id JOIN anime ON dispositivo.id_anime=anime.id WHERE dispositivo.id_usuario = ?";
 		List<Map <String, Object>> queryResult = jdbcTemplate.queryForList(sql, id);
 		return queryResult;
 	}

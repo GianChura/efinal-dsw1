@@ -17,7 +17,7 @@ const VerUsuarioPage = () => {
         }).done(response=>setUsuario(response.entity))
         client({
             method: 'GET',
-            path: '/api/usuarios/' + id + '/formacion'
+            path: '/api/usuarios/' + id + '/dispositivo'
         }).done(response => setDispositivos(response.entity))
     }, [])
 
@@ -34,21 +34,21 @@ const VerUsuarioPage = () => {
             </table>
 
             <hr />
-            <h2>Formación</h2>
+            <h2>Dispositivo</h2>
             <table border="1">
                 <thead>
                     <tr>
+                        <th>Plataforma</th>
                         <th>Anime</th>
-                        <th>PLataforma</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    {dispositivos.map(dispositivos=>{
+                    {dispositivos.map(dispositivo=>{
                         return(
-                            <tr key={dispositivos.ID}>
-                                <td>{dispositivos.PLATAFORMA}</td>
-                                <td>{dispositivos.ANIME}</td>
+                            <tr key={dispositivo.ID}>
+                                <td>{dispositivo.PLATAFORMA}</td>
+                                <td>{dispositivo.ANIME}</td>
                             </tr>
                         )
                     })}

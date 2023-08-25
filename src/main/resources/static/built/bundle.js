@@ -40856,6 +40856,7 @@ var EditarPlataformaPage = __webpack_require__(/*! ./pages/editar-plataforma */ 
 var VerUsuarioPage = __webpack_require__(/*! ./pages/ver-usuario */ "./src/main/js/pages/ver-usuario.js");
 var NuevoUsuarioPage = __webpack_require__(/*! ./pages/nuevo-usuario */ "./src/main/js/pages/nuevo-usuario.js");
 var EditarUsuarioPage = __webpack_require__(/*! ./pages/editar-usuario */ "./src/main/js/pages/editar-usuario.js");
+var NuevoDispositivoPage = __webpack_require__(/*! ./pages/nuevo-dispositivo */ "./src/main/js/pages/nuevo-dispositivo.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(HomePage, null)
@@ -40907,6 +40908,9 @@ var router = createBrowserRouter([{
 }, {
   path: '/editar-usuario/:id',
   element: /*#__PURE__*/React.createElement(EditarUsuarioPage, null)
+}, {
+  path: '/nuevo-dispositivo',
+  element: /*#__PURE__*/React.createElement(NuevoDispositivoPage, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
   router: router
@@ -41863,6 +41867,116 @@ module.exports = NuevoAnimePage;
 
 /***/ }),
 
+/***/ "./src/main/js/pages/nuevo-dispositivo.js":
+/*!************************************************!*\
+  !*** ./src/main/js/pages/nuevo-dispositivo.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require.useState,
+  useEffect = _require.useEffect;
+var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require2.Link,
+  useParams = _require2.useParams;
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var NuevoDispositivoPage = function NuevoDispositivoPage() {
+  var _useParams = useParams(),
+    id = _useParams.id;
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    plataformas = _useState2[0],
+    setPlataformas = _useState2[1];
+  var _useState3 = useState([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    animes = _useState4[0],
+    setAnimes = _useState4[1];
+  var _useState5 = useState(''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    idPlataforma = _useState6[0],
+    setPlataforma = _useState6[1];
+  var _useState7 = useState(''),
+    _useState8 = _slicedToArray(_useState7, 2),
+    idAnime = _useState8[0],
+    setAnime = _useState8[1];
+  var handleSubmit = function handleSubmit(evento) {
+    evento.preventDefault();
+    client({
+      method: 'POST',
+      path: '/api/dispositivos',
+      entity: {
+        usuario: 'http://localhost:8080/api/usuarios/' + id,
+        plataforma: 'http://localhost:8080/api/plataformas/' + idPlataforma,
+        anime: 'http://localhost:8080/api/animes/' + idAnime
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      window.location = '/';
+    });
+  };
+  useEffect(function () {
+    client({
+      method: 'GET',
+      path: '/api/plataformas'
+    }).done(function (response) {
+      setPlataformas(response.entity._embedded.plataformas);
+    });
+    client({
+      method: 'GET',
+      path: '/api/animes'
+    }).done(function (response) {
+      setAnimes(response.entity._embedded.animes);
+    });
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Dispositivo"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "plataforma"
+  }, "Plataforma "), /*#__PURE__*/React.createElement("select", {
+    name: "plataforma",
+    id: "plataforma",
+    onChange: function onChange(e) {
+      setPlataforma(e.target.value);
+    }
+  }, plataformas.map(function (plataforma) {
+    var value = plataforma._links.self.href.split('/').slice(-1);
+    return /*#__PURE__*/React.createElement("option", {
+      key: value,
+      value: value
+    }, "[", plataforma.nombre, "]");
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Anime "), /*#__PURE__*/React.createElement("select", {
+    name: "anime",
+    id: "anime",
+    onChange: function onChange(e) {
+      setAnime(e.target.value);
+    }
+  }, animes.map(function (anime) {
+    var value = anime._links.self.href.split('/').slice(-1);
+    return /*#__PURE__*/React.createElement("option", {
+      key: value,
+      value: value
+    }, "(", anime.nombre, ")");
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Dispositivo"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = NuevoDispositivoPage;
+
+/***/ }),
+
 /***/ "./src/main/js/pages/nuevo-instrumento.js":
 /*!************************************************!*\
   !*** ./src/main/js/pages/nuevo-instrumento.js ***!
@@ -42455,17 +42569,17 @@ var VerUsuarioPage = function VerUsuarioPage() {
     });
     client({
       method: 'GET',
-      path: '/api/usuarios/' + id + '/formacion'
+      path: '/api/usuarios/' + id + '/dispositivo'
     }).done(function (response) {
       return setDispositivos(response.entity);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Formaci\xF3n"), /*#__PURE__*/React.createElement("table", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Dispositivo"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Anime"), /*#__PURE__*/React.createElement("th", null, "PLataforma"))), /*#__PURE__*/React.createElement("tbody", null, dispositivos.map(function (dispositivos) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Plataforma"), /*#__PURE__*/React.createElement("th", null, "Anime"))), /*#__PURE__*/React.createElement("tbody", null, dispositivos.map(function (dispositivo) {
     return /*#__PURE__*/React.createElement("tr", {
-      key: dispositivos.ID
-    }, /*#__PURE__*/React.createElement("td", null, dispositivos.PLATAFORMA), /*#__PURE__*/React.createElement("td", null, dispositivos.ANIME));
+      key: dispositivo.ID
+    }, /*#__PURE__*/React.createElement("td", null, dispositivo.PLATAFORMA), /*#__PURE__*/React.createElement("td", null, dispositivo.ANIME));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
     to: "/ver-usuario/".concat(id, "/nuevo-dispositivo")
   }, "Nuevo Dispositivo"), " |", /*#__PURE__*/React.createElement(Link, {
