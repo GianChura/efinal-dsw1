@@ -11,18 +11,21 @@ public class DatabaseLoader implements CommandLineRunner {
 	private final MusicoRepository repositoryM;
 	private final BandaRepository repositoryB;
 	private final IntegranteRepository repositoryN;
+	private final AnimeRepository repositoryA;
 
 	@Autowired
 	public DatabaseLoader(
 		InstrumentoRepository repositoryI,
 		MusicoRepository repositoryM,
 		BandaRepository repositoryB,
-		IntegranteRepository repositoryN
+		IntegranteRepository repositoryN,
+		AnimeRepository repositoryA
 		) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
 		this.repositoryB = repositoryB;
 		this.repositoryN = repositoryN;
+		this.repositoryA = repositoryA;
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
 		this.repositoryI.save(new Instrumento("Guitarra", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
 		this.repositoryI.save(new Instrumento("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
+		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));		
 		Instrumento iVoz = new Instrumento("Voz","Viento",".");
 		this.repositoryI.save(iVoz);
 		Instrumento iGuitarraElectrica = new Instrumento("Guitarra Electrica","Electrónico", ".");
@@ -48,6 +51,11 @@ public class DatabaseLoader implements CommandLineRunner {
 
 		this.repositoryN.save(new Integrante(bQueen, mFreddy, iVoz));
 		this.repositoryN.save(new Integrante(bQueen, mBrian, iGuitarraElectrica));
+
+		this.repositoryA.save(new Anime("Dragon Ball Z","Acción","291"));
+		this.repositoryA.save(new Anime("One Piece","Acción","1053"));
+
+		
 
 
 	}

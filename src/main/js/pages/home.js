@@ -5,7 +5,7 @@ const {Link} = require('react-router-dom');
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] };
+		this.state = { instrumentos: [], musicos: [], bandas: [] , animes:[]};
 	}
 	componentDidMount() {
 
@@ -19,6 +19,10 @@ class HomePage extends React.Component {
 
 		client({ method: 'GET', path: '/api/bandas' }).done(response => {
 			this.setState({ bandas: response.entity._embedded.bandas });
+		});
+
+		client({ method: 'GET', path: '/api/animes' }).done(response => {
+			this.setState({ animes: response.entity._embedded.animes });
 		});
 
 	}
@@ -42,6 +46,11 @@ class HomePage extends React.Component {
 						<Titulo entidad="Bandas" emoji="👩🏼‍🎤" />
 						<BandaList bandas={this.state.bandas} />
 						<Link to="/nueva-banda">Nueva Banda</Link>
+					</div>
+					<div style={{"width": "calc(100% / 3)"}}>
+						<Titulo entidad="Animes" emoji="👩🏼‍🎤" />
+						<AnimeList animes={this.state.animes} />
+						<Link to="/nuevo-anime">Nuevo Anime</Link>
 					</div>
 				</div>
 
@@ -119,6 +128,34 @@ class BandaList extends React.Component {
 	}
 }
 
+//LISTA DE ANIMES
+class AnimeList extends React.Component {
+	render() {
+		const animes = this.props.animes.map(anime =>
+			<Anime key={anime._links.self.href} anime={anime} />
+		);
+		return (
+			<table border="1">
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+						<th>Genero</th>
+						<th>Capitulos</th>
+					</tr>
+					{animes}
+				</tbody>
+			</table>
+		)
+	}
+}
+
+
+
+
+
+
+
+
 class Instrumento extends React.Component {
 	render() {
 		const id = this.props.instrumento._links.self.href.split("/").slice(-1)
@@ -162,5 +199,24 @@ class Banda extends React.Component {
 		)
 	}
 }
+
+
+class Anime extends React.Component {
+	render() {
+		const id = this.props.anime._links.self.href.split("/").slice(-1)
+
+		return (
+			<tr>
+				<td>{this.props.anime.nombre}</td>
+				<td>{this.props.anime.genero}</td>
+				<td>{this.props.anime.capitulos}</td>
+				<td>
+					<Link to={"/ver-banda/" + id}>Ver</Link>
+				</td>
+			</tr>
+		)
+	}
+}
+
 
 module.exports = HomePage;

@@ -41037,7 +41037,8 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       instrumentos: [],
       musicos: [],
-      bandas: []
+      bandas: [],
+      animes: []
     };
     return _this;
   }
@@ -41067,6 +41068,14 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
       }).done(function (response) {
         _this2.setState({
           bandas: response.entity._embedded.bandas
+        });
+      });
+      client({
+        method: 'GET',
+        path: '/api/animes'
+      }).done(function (response) {
+        _this2.setState({
+          animes: response.entity._embedded.animes
         });
       });
     }
@@ -41111,7 +41120,18 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
         bandas: this.state.bandas
       }), /*#__PURE__*/React.createElement(Link, {
         to: "/nueva-banda"
-      }, "Nueva Banda"))));
+      }, "Nueva Banda")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          "width": "calc(100% / 3)"
+        }
+      }, /*#__PURE__*/React.createElement(Titulo, {
+        entidad: "Animes",
+        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
+      }), /*#__PURE__*/React.createElement(AnimeList, {
+        animes: this.state.animes
+      }), /*#__PURE__*/React.createElement(Link, {
+        to: "/nuevo-anime"
+      }, "Nuevo Anime"))));
     }
   }]);
   return HomePage;
@@ -41187,13 +41207,36 @@ var BandaList = /*#__PURE__*/function (_React$Component4) {
     }
   }]);
   return BandaList;
+}(React.Component); //LISTA DE ANIMES
+var AnimeList = /*#__PURE__*/function (_React$Component5) {
+  _inherits(AnimeList, _React$Component5);
+  var _super5 = _createSuper(AnimeList);
+  function AnimeList() {
+    _classCallCheck(this, AnimeList);
+    return _super5.apply(this, arguments);
+  }
+  _createClass(AnimeList, [{
+    key: "render",
+    value: function render() {
+      var animes = this.props.animes.map(function (anime) {
+        return /*#__PURE__*/React.createElement(Anime, {
+          key: anime._links.self.href,
+          anime: anime
+        });
+      });
+      return /*#__PURE__*/React.createElement("table", {
+        border: "1"
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Genero"), /*#__PURE__*/React.createElement("th", null, "Capitulos")), animes));
+    }
+  }]);
+  return AnimeList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Instrumento, _React$Component5);
-  var _super5 = _createSuper(Instrumento);
+var Instrumento = /*#__PURE__*/function (_React$Component6) {
+  _inherits(Instrumento, _React$Component6);
+  var _super6 = _createSuper(Instrumento);
   function Instrumento() {
     _classCallCheck(this, Instrumento);
-    return _super5.apply(this, arguments);
+    return _super6.apply(this, arguments);
   }
   _createClass(Instrumento, [{
     key: "render",
@@ -41208,12 +41251,12 @@ var Instrumento = /*#__PURE__*/function (_React$Component5) {
   }]);
   return Instrumento;
 }(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component6) {
-  _inherits(Musico, _React$Component6);
-  var _super6 = _createSuper(Musico);
+var Musico = /*#__PURE__*/function (_React$Component7) {
+  _inherits(Musico, _React$Component7);
+  var _super7 = _createSuper(Musico);
   function Musico() {
     _classCallCheck(this, Musico);
-    return _super6.apply(this, arguments);
+    return _super7.apply(this, arguments);
   }
   _createClass(Musico, [{
     key: "render",
@@ -41226,12 +41269,12 @@ var Musico = /*#__PURE__*/function (_React$Component6) {
   }]);
   return Musico;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Banda, _React$Component7);
-  var _super7 = _createSuper(Banda);
+var Banda = /*#__PURE__*/function (_React$Component8) {
+  _inherits(Banda, _React$Component8);
+  var _super8 = _createSuper(Banda);
   function Banda() {
     _classCallCheck(this, Banda);
-    return _super7.apply(this, arguments);
+    return _super8.apply(this, arguments);
   }
   _createClass(Banda, [{
     key: "render",
@@ -41243,6 +41286,24 @@ var Banda = /*#__PURE__*/function (_React$Component7) {
     }
   }]);
   return Banda;
+}(React.Component);
+var Anime = /*#__PURE__*/function (_React$Component9) {
+  _inherits(Anime, _React$Component9);
+  var _super9 = _createSuper(Anime);
+  function Anime() {
+    _classCallCheck(this, Anime);
+    return _super9.apply(this, arguments);
+  }
+  _createClass(Anime, [{
+    key: "render",
+    value: function render() {
+      var id = this.props.anime._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.anime.nombre), /*#__PURE__*/React.createElement("td", null, this.props.anime.genero), /*#__PURE__*/React.createElement("td", null, this.props.anime.capitulos), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-banda/" + id
+      }, "Ver")));
+    }
+  }]);
+  return Anime;
 }(React.Component);
 module.exports = HomePage;
 
