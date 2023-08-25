@@ -141,6 +141,7 @@ class AnimeList extends React.Component {
 						<th>Nombre</th>
 						<th>Genero</th>
 						<th>Capitulos</th>
+						<th>Acciones</th>
 					</tr>
 					{animes}
 				</tbody>
@@ -211,8 +212,10 @@ class Anime extends React.Component {
 				<td>{this.props.anime.genero}</td>
 				<td>{this.props.anime.capitulos}</td>
 				<td>
-					<Link to={"/ver-anime/" + id}>Ver</Link>
+					<Link to={"/ver-anime/" + id}>Ver</Link>	|
+					<Link to={"/editar-anime/" + id}>Editar</Link>					
 				</td>
+				
 			</tr>
 		)
 	}

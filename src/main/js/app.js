@@ -12,6 +12,7 @@ const VerBandaPage = require('./pages/ver-banda');
 const NuevoIntegrantePage = require('./pages/nuevo-integrante');
 const VerAnimePage=require('./pages/ver-anime');
 const NuevoAnimePage= require('./pages/nuevo-anime');
+const EditarAnimePage= require('./pages/editar-anime');
 
 const router = createBrowserRouter([
 	{ path: '/', element: <HomePage /> },
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
 	{ path: '/ver-banda/:id/nuevo-integrante', element: <NuevoIntegrantePage /> },
 	{ path: '/ver-anime/:id', element: <VerAnimePage /> },
 	{ path: '/nuevo-anime', element: <NuevoAnimePage/> },
+	{ path: '/editar-anime/:id', element: <EditarAnimePage /> },
 
 
 ])
