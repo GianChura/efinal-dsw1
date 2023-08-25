@@ -11,7 +11,7 @@ const EditarInstrumentoPage = require('./pages/editar-instrumento');
 const VerBandaPage = require('./pages/ver-banda');
 const NuevoIntegrantePage = require('./pages/nuevo-integrante');
 const VerAnimePage=require('./pages/ver-anime');
-
+const NuevoAnimePage= require('./pages/nuevo-anime');
 
 const router = createBrowserRouter([
 	{ path: '/', element: <HomePage /> },
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
 	{ path: '/ver-banda/:id', element: <VerBandaPage /> },
 	{ path: '/ver-banda/:id/nuevo-integrante', element: <NuevoIntegrantePage /> },
 	{ path: '/ver-anime/:id', element: <VerAnimePage /> },
+	{ path: '/nuevo-anime', element: <NuevoAnimePage/> },
 
 
 ])
