@@ -211,7 +211,7 @@ class Anime extends React.Component {
 				<td>{this.props.anime.genero}</td>
 				<td>{this.props.anime.capitulos}</td>
 				<td>
-					<Link to={"/ver-banda/" + id}>Ver</Link>
+					<Link to={"/ver-anime/" + id}>Ver</Link>
 				</td>
 			</tr>
 		)

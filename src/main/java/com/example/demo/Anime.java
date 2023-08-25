@@ -70,4 +70,22 @@ public class Anime {
 		this.nombre = nombre;
 	}
 
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getCapitulos() {
+		return capitulos;
+	}
+
+	public void setCapitulos(String capitulos) {
+		this.capitulos = capitulos;
+	}
+
+	
+
 }
