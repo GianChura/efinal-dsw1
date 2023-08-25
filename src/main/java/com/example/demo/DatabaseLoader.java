@@ -14,6 +14,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	private final AnimeRepository repositoryA;
 	private final PlataformaRepository repositoryP;
 	private final UsuarioRepository repositoryU;
+	private final DispositivoRepository repositoryD;
 
 	@Autowired
 	public DatabaseLoader(
@@ -23,7 +24,8 @@ public class DatabaseLoader implements CommandLineRunner {
 		IntegranteRepository repositoryN,
 		AnimeRepository repositoryA,
 		PlataformaRepository repositoryP,
-		UsuarioRepository repositoryU
+		UsuarioRepository repositoryU,
+		DispositivoRepository repositoryD
 		) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
@@ -32,6 +34,7 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryA = repositoryA;
 		this.repositoryP = repositoryP;
 		this.repositoryU = repositoryU;
+		this.repositoryD = repositoryD;
 	}
 
 	@Override
@@ -42,13 +45,16 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));		
 		Instrumento iVoz = new Instrumento("Voz","Viento",".");
 		this.repositoryI.save(iVoz);
+		
 		Instrumento iGuitarraElectrica = new Instrumento("Guitarra Electrica","Electrónico", ".");
 		this.repositoryI.save(iGuitarraElectrica);
+
 		this.repositoryI.save(new Instrumento("Batería","Percusión","."));
 
 		this.repositoryM.save(new Musico("Daniel F"));
 		Musico mFreddy = new Musico("Freddy");
 		this.repositoryM.save(mFreddy);
+
 		Musico mBrian = new Musico("Brian");
 		this.repositoryM.save(mBrian);
 
@@ -58,15 +64,32 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryN.save(new Integrante(bQueen, mFreddy, iVoz));
 		this.repositoryN.save(new Integrante(bQueen, mBrian, iGuitarraElectrica));
 
+
 		this.repositoryA.save(new Anime("Dragon Ball Z","Acción","291"));
 		this.repositoryA.save(new Anime("One Piece","Acción","1053"));
+		Anime aBaki = new Anime("Baki", "Accion", ".");
+		this.repositoryA.save(aBaki);
+		Anime aTekken = new Anime("Tekken", "Lucha", ".");
+		this.repositoryA.save(aTekken);
 
 		this.repositoryP.save(new Plataforma("Netflix"));
 		this.repositoryP.save(new Plataforma("Amazon Prime"));
 		this.repositoryP.save(new Plataforma("HBO"));
+		Plataforma pDisney = new Plataforma("Disney");
+		this.repositoryP.save(pDisney);
+		Plataforma pParamont = new Plataforma("Paramont");
+		this.repositoryP.save(pParamont);
 
 		this.repositoryU.save(new Usuario("Giancarlo"));
 		this.repositoryU.save(new Usuario("Christian"));
+		Usuario uGaby = new Usuario("Gaby");
+		this.repositoryU.save(uGaby);
+
+		this.repositoryD.save(new Dispositivo(uGaby,pDisney,aBaki));
+		this.repositoryD.save(new Dispositivo(uGaby,pParamont,aTekken));
+
+
+		
 		
 
 

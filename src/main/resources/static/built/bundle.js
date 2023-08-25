@@ -42442,6 +42442,10 @@ var VerUsuarioPage = function VerUsuarioPage() {
     _useState2 = _slicedToArray(_useState, 2),
     usuario = _useState2[0],
     setUsuario = _useState2[1];
+  var _useState3 = useState([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    dispositivos = _useState4[0],
+    setDispositivos = _useState4[1];
   useEffect(function () {
     client({
       method: 'GET',
@@ -42449,8 +42453,22 @@ var VerUsuarioPage = function VerUsuarioPage() {
     }).done(function (response) {
       return setUsuario(response.entity);
     });
+    client({
+      method: 'GET',
+      path: '/api/usuarios/' + id + '/formacion'
+    }).done(function (response) {
+      return setDispositivos(response.entity);
+    });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement(Link, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "Formaci\xF3n"), /*#__PURE__*/React.createElement("table", {
+    border: "1"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Anime"), /*#__PURE__*/React.createElement("th", null, "PLataforma"))), /*#__PURE__*/React.createElement("tbody", null, dispositivos.map(function (dispositivos) {
+    return /*#__PURE__*/React.createElement("tr", {
+      key: dispositivos.ID
+    }, /*#__PURE__*/React.createElement("td", null, dispositivos.PLATAFORMA), /*#__PURE__*/React.createElement("td", null, dispositivos.ANIME));
+  }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
+    to: "/ver-usuario/".concat(id, "/nuevo-dispositivo")
+  }, "Nuevo Dispositivo"), " |", /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
