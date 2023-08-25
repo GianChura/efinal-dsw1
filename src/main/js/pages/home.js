@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 		});
 
 		client({ method: 'GET', path: '/api/plataformas' }).done(response => {
-			this.setState({ plataforma: response.entity._embedded.plataformas });
+			this.setState({ plataformas: response.entity._embedded.plataformas });
 		});
 
 
@@ -59,9 +59,9 @@ class HomePage extends React.Component {
 					</div>
 
 					<div style={{"width": "calc(100% / 3)"}}>
-						<Titulo entidad="Plaformas" emoji="👩🏼‍🎤" />
+						<Titulo entidad="Plataformas" emoji="👩🏼‍🎤" />
 						<PlataformaList plataformas={this.state.plataformas} />
-						<Link to="/nuevo-plataforma">Nueva Plaforma</Link>
+						<Link to="/nueva-plataforma">Nueva Plataforma</Link>
 					</div>
 				</div>
 
@@ -165,7 +165,7 @@ class AnimeList extends React.Component {
 class PlataformaList extends React.Component {
 	render() {
 		const plataformas = this.props.plataformas.map(plataforma =>
-			<Plaforma key={plataforma._links.self.href} plataforma={plataforma} />
+			<Plataforma key={plataforma._links.self.href} plataforma={plataforma} />
 		);
 		return (
 			<table border="1">
@@ -250,7 +250,7 @@ class Anime extends React.Component {
 }
 
 
-class Plaforma extends React.Component {
+class Plataforma extends React.Component {
 	render() {
 		const id = this.props.plataforma._links.self.href.split("/").slice(-1)
 

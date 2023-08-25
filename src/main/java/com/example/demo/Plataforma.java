@@ -43,7 +43,7 @@ public class Plataforma {
 
 	@Override
 	public String toString() {
-		return "Anime{" +
+		return "Plataforma{" +
 			"id=" + id +
 			", nombre='" + nombre + '\'' +
 		'}';
@@ -64,8 +64,5 @@ public class Plataforma {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	
-	
 
 }

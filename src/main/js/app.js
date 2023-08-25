@@ -13,6 +13,9 @@ const NuevoIntegrantePage = require('./pages/nuevo-integrante');
 const VerAnimePage=require('./pages/ver-anime');
 const NuevoAnimePage= require('./pages/nuevo-anime');
 const EditarAnimePage= require('./pages/editar-anime');
+const VerPlataformaPage=require('./pages/ver-plataforma');
+const NuevaPlataformaPage= require('./pages/nueva-plataforma');
+const EditarPlataformaPage= require('./pages/editar-plataforma');
 
 const router = createBrowserRouter([
 	{ path: '/', element: <HomePage /> },
@@ -26,6 +29,9 @@ const router = createBrowserRouter([
 	{ path: '/ver-anime/:id', element: <VerAnimePage /> },
 	{ path: '/nuevo-anime', element: <NuevoAnimePage/> },
 	{ path: '/editar-anime/:id', element: <EditarAnimePage /> },
+	{ path: '/ver-plataforma/:id', element: <VerPlataformaPage /> },
+	{ path: '/nueva-plataforma', element: <NuevaPlataformaPage/> },
+	{ path: '/editar-plataforma/:id', element: <EditarPlataformaPage /> },
 
 
 ])
