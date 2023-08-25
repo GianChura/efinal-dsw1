@@ -40853,6 +40853,9 @@ var EditarAnimePage = __webpack_require__(/*! ./pages/editar-anime */ "./src/mai
 var VerPlataformaPage = __webpack_require__(/*! ./pages/ver-plataforma */ "./src/main/js/pages/ver-plataforma.js");
 var NuevaPlataformaPage = __webpack_require__(/*! ./pages/nueva-plataforma */ "./src/main/js/pages/nueva-plataforma.js");
 var EditarPlataformaPage = __webpack_require__(/*! ./pages/editar-plataforma */ "./src/main/js/pages/editar-plataforma.js");
+var VerUsuarioPage = __webpack_require__(/*! ./pages/ver-usuario */ "./src/main/js/pages/ver-usuario.js");
+var NuevoUsuarioPage = __webpack_require__(/*! ./pages/nuevo-usuario */ "./src/main/js/pages/nuevo-usuario.js");
+var EditarUsuarioPage = __webpack_require__(/*! ./pages/editar-usuario */ "./src/main/js/pages/editar-usuario.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(HomePage, null)
@@ -40895,6 +40898,15 @@ var router = createBrowserRouter([{
 }, {
   path: '/editar-plataforma/:id',
   element: /*#__PURE__*/React.createElement(EditarPlataformaPage, null)
+}, {
+  path: '/ver-usuario/:id',
+  element: /*#__PURE__*/React.createElement(VerUsuarioPage, null)
+}, {
+  path: '/nuevo-usuario',
+  element: /*#__PURE__*/React.createElement(NuevoUsuarioPage, null)
+}, {
+  path: '/editar-usuario/:id',
+  element: /*#__PURE__*/React.createElement(EditarUsuarioPage, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
   router: router
@@ -41199,6 +41211,82 @@ module.exports = EditarPlataformaPage;
 
 /***/ }),
 
+/***/ "./src/main/js/pages/editar-usuario.js":
+/*!*********************************************!*\
+  !*** ./src/main/js/pages/editar-usuario.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require.useState,
+  useEffect = _require.useEffect;
+var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require2.Link,
+  useParams = _require2.useParams;
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var EditarUsuarioPage = function EditarUsuarioPage() {
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    usuario = _useState2[0],
+    setUsuario = _useState2[1];
+  var _useParams = useParams(),
+    id = _useParams.id;
+  useEffect(function () {
+    client({
+      method: 'GET',
+      path: '/api/usuarios/' + id
+    }).done(function (response) {
+      return setUsuario(response.entity);
+    });
+  }, []);
+  var handleSubmit = function handleSubmit(evento) {
+    evento.preventDefault();
+    client({
+      method: 'PATCH',
+      path: '/api/usuarios/' + id,
+      entity: usuario,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      return window.location = '/';
+    });
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Usuario"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", null, "Usuario"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
+    value: usuario.nombre,
+    onChange: function onChange(e) {
+      return setUsuario(_objectSpread(_objectSpread({}, usuario), {}, {
+        nombre: e.target.value
+      }));
+    }
+  }), " ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Editar Usuario"
+  })));
+};
+module.exports = EditarUsuarioPage;
+
+/***/ }),
+
 /***/ "./src/main/js/pages/home.js":
 /*!***********************************!*\
   !*** ./src/main/js/pages/home.js ***!
@@ -41235,7 +41323,8 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
       musicos: [],
       bandas: [],
       animes: [],
-      plataformas: []
+      plataformas: [],
+      usuarios: []
     };
     return _this;
   }
@@ -41281,6 +41370,14 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
       }).done(function (response) {
         _this2.setState({
           plataformas: response.entity._embedded.plataformas
+        });
+      });
+      client({
+        method: 'GET',
+        path: '/api/usuarios'
+      }).done(function (response) {
+        _this2.setState({
+          usuarios: response.entity._embedded.usuarios
         });
       });
     }
@@ -41347,7 +41444,18 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
         plataformas: this.state.plataformas
       }), /*#__PURE__*/React.createElement(Link, {
         to: "/nueva-plataforma"
-      }, "Nueva Plataforma"))));
+      }, "Nueva Plataforma")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          "width": "calc(100% / 3)"
+        }
+      }, /*#__PURE__*/React.createElement(Titulo, {
+        entidad: "Usuarios",
+        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
+      }), /*#__PURE__*/React.createElement(UsuarioList, {
+        usuarios: this.state.usuarios
+      }), /*#__PURE__*/React.createElement(Link, {
+        to: "/nuevo-usuario"
+      }, "Nuevo Usuario"))));
     }
   }]);
   return HomePage;
@@ -41470,12 +41578,35 @@ var PlataformaList = /*#__PURE__*/function (_React$Component6) {
   }]);
   return PlataformaList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Instrumento, _React$Component7);
-  var _super7 = _createSuper(Instrumento);
+var UsuarioList = /*#__PURE__*/function (_React$Component7) {
+  _inherits(UsuarioList, _React$Component7);
+  var _super7 = _createSuper(UsuarioList);
+  function UsuarioList() {
+    _classCallCheck(this, UsuarioList);
+    return _super7.apply(this, arguments);
+  }
+  _createClass(UsuarioList, [{
+    key: "render",
+    value: function render() {
+      var usuarios = this.props.usuarios.map(function (usuario) {
+        return /*#__PURE__*/React.createElement(Usuario, {
+          key: usuario._links.self.href,
+          usuario: usuario
+        });
+      });
+      return /*#__PURE__*/React.createElement("table", {
+        border: "1"
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), usuarios));
+    }
+  }]);
+  return UsuarioList;
+}(React.Component);
+var Instrumento = /*#__PURE__*/function (_React$Component8) {
+  _inherits(Instrumento, _React$Component8);
+  var _super8 = _createSuper(Instrumento);
   function Instrumento() {
     _classCallCheck(this, Instrumento);
-    return _super7.apply(this, arguments);
+    return _super8.apply(this, arguments);
   }
   _createClass(Instrumento, [{
     key: "render",
@@ -41490,12 +41621,12 @@ var Instrumento = /*#__PURE__*/function (_React$Component7) {
   }]);
   return Instrumento;
 }(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component8) {
-  _inherits(Musico, _React$Component8);
-  var _super8 = _createSuper(Musico);
+var Musico = /*#__PURE__*/function (_React$Component9) {
+  _inherits(Musico, _React$Component9);
+  var _super9 = _createSuper(Musico);
   function Musico() {
     _classCallCheck(this, Musico);
-    return _super8.apply(this, arguments);
+    return _super9.apply(this, arguments);
   }
   _createClass(Musico, [{
     key: "render",
@@ -41508,12 +41639,12 @@ var Musico = /*#__PURE__*/function (_React$Component8) {
   }]);
   return Musico;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component9) {
-  _inherits(Banda, _React$Component9);
-  var _super9 = _createSuper(Banda);
+var Banda = /*#__PURE__*/function (_React$Component10) {
+  _inherits(Banda, _React$Component10);
+  var _super10 = _createSuper(Banda);
   function Banda() {
     _classCallCheck(this, Banda);
-    return _super9.apply(this, arguments);
+    return _super10.apply(this, arguments);
   }
   _createClass(Banda, [{
     key: "render",
@@ -41526,12 +41657,12 @@ var Banda = /*#__PURE__*/function (_React$Component9) {
   }]);
   return Banda;
 }(React.Component);
-var Anime = /*#__PURE__*/function (_React$Component10) {
-  _inherits(Anime, _React$Component10);
-  var _super10 = _createSuper(Anime);
+var Anime = /*#__PURE__*/function (_React$Component11) {
+  _inherits(Anime, _React$Component11);
+  var _super11 = _createSuper(Anime);
   function Anime() {
     _classCallCheck(this, Anime);
-    return _super10.apply(this, arguments);
+    return _super11.apply(this, arguments);
   }
   _createClass(Anime, [{
     key: "render",
@@ -41546,12 +41677,12 @@ var Anime = /*#__PURE__*/function (_React$Component10) {
   }]);
   return Anime;
 }(React.Component);
-var Plataforma = /*#__PURE__*/function (_React$Component11) {
-  _inherits(Plataforma, _React$Component11);
-  var _super11 = _createSuper(Plataforma);
+var Plataforma = /*#__PURE__*/function (_React$Component12) {
+  _inherits(Plataforma, _React$Component12);
+  var _super12 = _createSuper(Plataforma);
   function Plataforma() {
     _classCallCheck(this, Plataforma);
-    return _super11.apply(this, arguments);
+    return _super12.apply(this, arguments);
   }
   _createClass(Plataforma, [{
     key: "render",
@@ -41565,6 +41696,26 @@ var Plataforma = /*#__PURE__*/function (_React$Component11) {
     }
   }]);
   return Plataforma;
+}(React.Component);
+var Usuario = /*#__PURE__*/function (_React$Component13) {
+  _inherits(Usuario, _React$Component13);
+  var _super13 = _createSuper(Usuario);
+  function Usuario() {
+    _classCallCheck(this, Usuario);
+    return _super13.apply(this, arguments);
+  }
+  _createClass(Usuario, [{
+    key: "render",
+    value: function render() {
+      var id = this.props.usuario._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.usuario.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-usuario/" + id
+      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
+        to: "/editar-usuario/" + id
+      }, "Editar")));
+    }
+  }]);
+  return Usuario;
 }(React.Component);
 module.exports = HomePage;
 
@@ -41964,6 +42115,65 @@ module.exports = NuevoMusicoPage;
 
 /***/ }),
 
+/***/ "./src/main/js/pages/nuevo-usuario.js":
+/*!********************************************!*\
+  !*** ./src/main/js/pages/nuevo-usuario.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require.useState;
+var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require2.Link;
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var NuevoUsuarioPage = function NuevoUsuarioPage() {
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
+  var handleSubmit = function handleSubmit(evento) {
+    evento.preventDefault();
+    client({
+      method: 'POST',
+      path: '/api/usuarios',
+      entity: {
+        nombre: nombre
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      window.location = '/';
+    });
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Usuario"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), " ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
+    onChange: function onChange(e) {
+      return setNombre(e.target.value);
+    }
+  }), " ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Usuario"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = NuevoUsuarioPage;
+
+/***/ }),
+
 /***/ "./src/main/js/pages/ver-anime.js":
 /*!****************************************!*\
   !*** ./src/main/js/pages/ver-anime.js ***!
@@ -42201,6 +42411,50 @@ var VerPlataformaPage = function VerPlataformaPage() {
   }, "Volver"));
 };
 module.exports = VerPlataformaPage;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/ver-usuario.js":
+/*!******************************************!*\
+  !*** ./src/main/js/pages/ver-usuario.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link,
+  useParams = _require.useParams;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState,
+  useEffect = _require2.useEffect;
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var VerUsuarioPage = function VerUsuarioPage() {
+  var _useParams = useParams(),
+    id = _useParams.id;
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    usuario = _useState2[0],
+    setUsuario = _useState2[1];
+  useEffect(function () {
+    client({
+      method: 'GET',
+      path: '/api/usuarios/' + id
+    }).done(function (response) {
+      return setUsuario(response.entity);
+    });
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Usuario"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, usuario.nombre))), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = VerUsuarioPage;
 
 /***/ }),
 

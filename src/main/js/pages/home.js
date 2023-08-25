@@ -5,7 +5,7 @@ const {Link} = require('react-router-dom');
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] , animes:[], plataformas:[]};
+		this.state = { instrumentos: [], musicos: [], bandas: [] , animes:[], plataformas:[], usuarios:[]};
 	}
 	componentDidMount() {
 
@@ -28,6 +28,10 @@ class HomePage extends React.Component {
 		client({ method: 'GET', path: '/api/plataformas' }).done(response => {
 			this.setState({ plataformas: response.entity._embedded.plataformas });
 		});
+		client({ method: 'GET', path: '/api/usuarios' }).done(response => {
+			this.setState({ usuarios: response.entity._embedded.usuarios });
+		});
+
 
 
 	}
@@ -62,6 +66,12 @@ class HomePage extends React.Component {
 						<Titulo entidad="Plataformas" emoji="👩🏼‍🎤" />
 						<PlataformaList plataformas={this.state.plataformas} />
 						<Link to="/nueva-plataforma">Nueva Plataforma</Link>
+					</div>
+					
+					<div style={{"width": "calc(100% / 3)"}}>
+						<Titulo entidad="Usuarios" emoji="👩🏼‍🎤" />
+						<UsuarioList usuarios={this.state.usuarios} />
+						<Link to="/nuevo-usuario">Nuevo Usuario</Link>
 					</div>
 				</div>
 
@@ -181,6 +191,24 @@ class PlataformaList extends React.Component {
 	}
 }
 
+class UsuarioList extends React.Component {
+	render() {
+		const usuarios = this.props.usuarios.map(usuario =>
+			<Usuario key={usuario._links.self.href} usuario={usuario} />
+		);
+		return (
+			<table border="1">
+				<tbody>
+					<tr>
+						<th>Nombre</th>		
+						<th>Acciones</th>				
+					</tr>
+					{usuarios}
+				</tbody>
+			</table>
+		)
+	}
+}
 
 
 
@@ -261,6 +289,25 @@ class Plataforma extends React.Component {
 				<td>
 					<Link to={"/ver-plataforma/" + id}>Ver</Link>	|
 					<Link to={"/editar-plataforma/" + id}>Editar</Link>					
+				</td>
+				
+			</tr>
+		)
+	}
+}
+
+
+class Usuario extends React.Component {
+	render() {
+		const id = this.props.usuario._links.self.href.split("/").slice(-1)
+
+		return (
+			<tr>
+				<td>{this.props.usuario.nombre}</td>
+			
+				<td>
+					<Link to={"/ver-usuario/" + id}>Ver</Link>	|
+					<Link to={"/editar-usuario/" + id}>Editar</Link>					
 				</td>
 				
 			</tr>

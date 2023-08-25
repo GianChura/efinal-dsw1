@@ -16,6 +16,9 @@ const EditarAnimePage= require('./pages/editar-anime');
 const VerPlataformaPage=require('./pages/ver-plataforma');
 const NuevaPlataformaPage= require('./pages/nueva-plataforma');
 const EditarPlataformaPage= require('./pages/editar-plataforma');
+const VerUsuarioPage= require('./pages/ver-usuario');
+const NuevoUsuarioPage= require('./pages/nuevo-usuario');
+const EditarUsuarioPage= require('./pages/editar-usuario');
 
 const router = createBrowserRouter([
 	{ path: '/', element: <HomePage /> },
@@ -32,6 +35,9 @@ const router = createBrowserRouter([
 	{ path: '/ver-plataforma/:id', element: <VerPlataformaPage /> },
 	{ path: '/nueva-plataforma', element: <NuevaPlataformaPage/> },
 	{ path: '/editar-plataforma/:id', element: <EditarPlataformaPage /> },
+	{ path: '/ver-usuario/:id', element: <VerUsuarioPage /> },
+	{ path: '/nuevo-usuario', element: <NuevoUsuarioPage/> },
+	{ path: '/editar-usuario/:id', element: <EditarUsuarioPage /> },
 
 
 ])
